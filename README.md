@@ -71,7 +71,7 @@ npm install
 npm run server
 ```
 
-- ** then run the react app**
+- **then run the react app**
 
 ```cmd
 npm run dev
@@ -122,5 +122,5 @@ npm run dev
 ## 💡 Author
 
 **Kiran Balaji**
-📧 [your.email@example.com](mailto:kiran19701@gmail.com)
+📧 [kiran19701@gmail.com](mailto:kiran19701@gmail.com)
 🔗 [LinkedIn](https://www.linkedin.com/in/kiran-balaji/)
