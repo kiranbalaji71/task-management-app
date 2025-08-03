@@ -1,0 +1,268 @@
+// Login Page
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f2f5;
+  padding: 20px;
+
+  .login-card {
+    width: 400px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+
+    .ant-card-head {
+      border-bottom: none; // cleaner look
+    }
+  }
+
+  .login-title-wrapper {
+    padding: 16px 0 8px;
+  }
+
+  .login-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .login-subtitle {
+    font-size: 12px;
+    color: #888;
+  }
+}
+
+// Common Styles
+.task-container,
+.user-container,
+.dashboard-container {
+  padding: 24px;
+}
+
+// Dashboard Page
+.dashboard-container {
+  .dashboard-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  &.dashboard-center {
+    padding: 24px;
+    text-align: center;
+  }
+
+  .dashboard-no-task-tag,
+  .dashboard-task-tag {
+    margin: 0;
+    font-size: 10px;
+    padding: 0 4px;
+    border-radius: 4px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .dashboard-task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .dashboard-more-tasks {
+    font-size: 10px;
+    color: #999;
+  }
+
+  .dashboard-calendar-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    padding: 8px;
+  }
+
+  .dashboard-calendar-title {
+    font-size: 16px;
+  }
+
+  .dashboard-team-members {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .dashboard-status-card {
+    text-align: center;
+  }
+
+  .dashboard-status-title {
+    margin-top: 8px;
+    font-weight: 500;
+  }
+
+  .dashboard-status-count {
+    color: #999;
+  }
+}
+
+// Task Page
+.task-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .task-title {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .task-error {
+    color: red;
+    font-size: 14px;
+  }
+
+  .task-add-btn {
+    display: flex;
+    align-items: center;
+  }
+
+  .task-table {
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 8px;
+  }
+
+  .task-center {
+    text-align: center;
+    padding: 24px;
+    color: #999;
+  }
+
+  .task-drawer {
+    .ant-drawer-body {
+      padding-bottom: 0;
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .task-container {
+    padding: 12px;
+
+    .task-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .task-table {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .task-container {
+    padding: 8px;
+
+    .task-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .task-title {
+      font-size: 16px;
+    }
+
+    .task-add-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+// User Page
+.user-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &.user-center {
+    text-align: center;
+    padding: 24px;
+    color: #999;
+  }
+  .user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .user-title {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .user-error {
+    color: red;
+    font-size: 14px;
+  }
+
+  .user-add-btn {
+    display: flex;
+    align-items: center;
+  }
+
+  .user-table {
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-container {
+    padding: 12px;
+
+    .user-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .user-table {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .user-container {
+    padding: 8px;
+
+    .user-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .user-title {
+      font-size: 16px;
+    }
+
+    .user-add-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

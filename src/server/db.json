@@ -1,0 +1,508 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "admin123",
+      "role": "admin",
+      "manager_id": null,
+      "manager_name": null
+    },
+    {
+      "id": "2",
+      "name": "Ethan Johnson",
+      "email": "manager1@example.com",
+      "password": "manager123",
+      "role": "manager",
+      "manager_id": null,
+      "manager_name": null
+    },
+    {
+      "id": "3",
+      "name": "Olivia Martinez",
+      "email": "manager2@example.com",
+      "password": "manager123",
+      "role": "manager",
+      "manager_id": null,
+      "manager_name": null
+    },
+    {
+      "id": "4",
+      "name": "Liam Carter",
+      "email": "liam@example.com",
+      "password": "emp123",
+      "role": "employee",
+      "manager_id": "2",
+      "manager_name": "Ethan Johnson"
+    },
+    {
+      "id": "5",
+      "name": "Mia Thompson",
+      "email": "mia@example.com",
+      "role": "employee",
+      "manager_id": "3",
+      "manager_name": "Olivia Martinez"
+    },
+    {
+      "id": "6",
+      "name": "Noah Ramirez",
+      "email": "noah@example.com",
+      "password": "emp123",
+      "role": "employee",
+      "manager_id": "2",
+      "manager_name": "Ethan Johnson"
+    },
+    {
+      "id": "7",
+      "name": "Ava Scott",
+      "email": "ava@example.com",
+      "password": "emp123",
+      "role": "employee",
+      "manager_id": "3",
+      "manager_name": "Olivia Martinez"
+    },
+    {
+      "id": "8",
+      "name": "James Parker",
+      "email": "james@example.com",
+      "role": "employee",
+      "manager_id": "2",
+      "manager_name": "Ethan Johnson"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Setup project structure",
+      "description": "Organize folders for the dashboard",
+      "assigned_id": "1",
+      "assigned_to": "Admin User",
+      "due_date": "2025-08-05",
+      "status": "In Progress"
+    },
+    {
+      "id": "2",
+      "title": "Design dashboard layout",
+      "description": "Create wireframes for the dashboard",
+      "assigned_id": "2",
+      "assigned_to": "Ethan Johnson",
+      "due_date": "2025-08-10",
+      "status": "Completed"
+    },
+    {
+      "id": "3",
+      "title": "Implement user authentication",
+      "description": "Setup login and registration functionality",
+      "assigned_id": "3",
+      "assigned_to": "Olivia Martinez",
+      "due_date": "2025-08-15",
+      "status": "Completed"
+    },
+    {
+      "id": "4",
+      "title": "Create API endpoints",
+      "description": "Develop RESTful APIs for task management",
+      "assigned_id": "4",
+      "assigned_to": "Liam Carter",
+      "due_date": "2025-08-20",
+      "status": "In Progress"
+    },
+    {
+      "id": "5",
+      "title": "Integrate frontend with backend",
+      "description": "Connect React components to the API",
+      "assigned_id": "5",
+      "assigned_to": "Mia Thompson",
+      "due_date": "2025-08-25",
+      "status": "Pending"
+    },
+    {
+      "id": "6",
+      "title": "Test user roles and permissions",
+      "description": "Verify access control for different user roles",
+      "assigned_id": "6",
+      "assigned_to": "Noah Ramirez",
+      "due_date": "2025-08-30",
+      "status": "Completed"
+    },
+    {
+      "id": "7",
+      "title": "Deploy application to production",
+      "description": "Prepare the app for deployment on the server",
+      "assigned_id": "7",
+      "assigned_to": "Ava Scott",
+      "due_date": "2025-09-05",
+      "status": "Pending"
+    },
+    {
+      "id": "8",
+      "title": "Monitor application performance",
+      "description": "Set up monitoring tools for the deployed app",
+      "assigned_id": "8",
+      "assigned_to": "James Parker",
+      "due_date": "2025-09-10",
+      "status": "In Progress"
+    },
+    {
+      "id": "9",
+      "title": "Gather user feedback",
+      "description": "Collect feedback from users for improvements",
+      "assigned_id": "9",
+      "assigned_to": "Isabella Moore",
+      "due_date": "2025-09-15",
+      "status": "Pending"
+    },
+    {
+      "id": "10",
+      "title": "Update documentation",
+      "description": "Revise project documentation based on changes",
+      "assigned_id": "1",
+      "assigned_to": "Admin User",
+      "due_date": "2025-09-20",
+      "status": "Completed"
+    },
+    {
+      "id": "11",
+      "title": "Implement dark mode",
+      "description": "Add dark mode functionality to the dashboard",
+      "assigned_id": "2",
+      "assigned_to": "Ethan Johnson",
+      "due_date": "2025-09-25",
+      "status": "Pending"
+    },
+    {
+      "id": "12",
+      "title": "Optimize performance",
+      "description": "Improve loading times and responsiveness",
+      "assigned_id": "3",
+      "assigned_to": "Olivia Martinez",
+      "due_date": "2025-09-30",
+      "status": "In Progress"
+    },
+    {
+      "id": "13",
+      "title": "Add user notifications",
+      "description": "Implement notification system for user actions",
+      "assigned_id": "4",
+      "assigned_to": "Liam Carter",
+      "due_date": "2025-10-05",
+      "status": "Pending"
+    },
+    {
+      "id": "14",
+      "title": "Conduct security audit",
+      "description": "Review application for security vulnerabilities",
+      "assigned_id": "5",
+      "assigned_to": "Mia Thompson",
+      "due_date": "2025-10-10",
+      "status": "Completed"
+    },
+    {
+      "id": "15",
+      "title": "Prepare release notes",
+      "description": "Document changes for the next release",
+      "assigned_id": "6",
+      "assigned_to": "Noah Ramirez",
+      "due_date": "2025-10-15",
+      "status": "Pending"
+    },
+    {
+      "id": "16",
+      "title": "Conduct user training",
+      "description": "Train users on new features and functionalities",
+      "assigned_id": "7",
+      "assigned_to": "Ava Scott",
+      "due_date": "2025-10-20",
+      "status": "In Progress"
+    },
+    {
+      "id": "17",
+      "title": "Plan next sprint",
+      "description": "Define tasks and goals for the next sprint",
+      "assigned_id": "8",
+      "assigned_to": "James Parker",
+      "due_date": "2025-10-25",
+      "status": "Pending"
+    },
+    {
+      "id": "18",
+      "title": "Review code quality",
+      "description": "Ensure code adheres to quality standards",
+      "assigned_id": "9",
+      "assigned_to": "Isabella Moore",
+      "due_date": "2025-10-30",
+      "status": "Completed"
+    },
+    {
+      "id": "19",
+      "title": "Implement search functionality",
+      "description": "Add search feature to the dashboard",
+      "assigned_id": "1",
+      "assigned_to": "Admin User",
+      "due_date": "2025-11-05",
+      "status": "Pending"
+    },
+    {
+      "id": "20",
+      "title": "Create user guides",
+      "description": "Develop guides for users on how to use the application",
+      "assigned_id": "2",
+      "assigned_to": "Ethan Johnson",
+      "due_date": "2025-11-10",
+      "status": "In Progress"
+    },
+    {
+      "id": "21",
+      "title": "Integrate third-party services",
+      "description": "Connect with external APIs for additional features",
+      "assigned_id": "3",
+      "assigned_to": "Olivia Martinez",
+      "due_date": "2025-11-15",
+      "status": "Pending"
+    },
+    {
+      "id": "22",
+      "title": "Conduct user acceptance testing",
+      "description": "Test the application with real users for feedback",
+      "assigned_id": "4",
+      "assigned_to": "Liam Carter",
+      "due_date": "2025-11-20",
+      "status": "Completed"
+    },
+    {
+      "id": "23",
+      "title": "Update UI components",
+      "description": "Revise UI components for better user experience",
+      "assigned_id": "5",
+      "assigned_to": "Mia Thompson",
+      "due_date": "2025-11-25",
+      "status": "Pending"
+    },
+    {
+      "id": "24",
+      "title": "Implement data analytics",
+      "description": "Add analytics features to track user behavior",
+      "assigned_id": "6",
+      "assigned_to": "Noah Ramirez",
+      "due_date": "2025-11-30",
+      "status": "In Progress"
+    },
+    {
+      "id": "25",
+      "title": "Conduct performance testing",
+      "description": "Test the application under load conditions",
+      "assigned_id": "7",
+      "assigned_to": "Ava Scott",
+      "due_date": "2025-12-05",
+      "status": "Pending"
+    },
+    {
+      "id": "26",
+      "title": "Prepare for next release",
+      "description": "Finalize features and fixes for the upcoming release",
+      "assigned_id": "8",
+      "assigned_to": "James Parker",
+      "due_date": "2025-12-10",
+      "status": "Completed"
+    },
+    {
+      "id": "27",
+      "title": "Conduct retrospective meeting",
+      "description": "Review the sprint and discuss improvements",
+      "assigned_id": "9",
+      "assigned_to": "Isabella Moore",
+      "due_date": "2025-12-15",
+      "status": "Pending"
+    },
+    {
+      "id": "28",
+      "title": "Implement user feedback",
+      "description": "Incorporate user suggestions into the application",
+      "assigned_id": "1",
+      "assigned_to": "Admin User",
+      "due_date": "2025-12-20",
+      "status": "In Progress"
+    },
+    {
+      "id": "29",
+      "title": "Conduct security training",
+      "description": "Train team on security best practices",
+      "assigned_id": "2",
+      "assigned_to": "Ethan Johnson",
+      "due_date": "2025-12-25",
+      "status": "Pending"
+    },
+    {
+      "id": "30",
+      "title": "Plan for next quarter",
+      "description": "Define goals and tasks for the next quarter",
+      "assigned_id": "3",
+      "assigned_to": "Olivia Martinez",
+      "due_date": "2025-12-30",
+      "status": "Completed"
+    },
+    {
+      "id": "31",
+      "title": "Conduct team building activity",
+      "description": "Organize an event for team bonding",
+      "assigned_id": "4",
+      "assigned_to": "Liam Carter",
+      "due_date": "2026-01-05",
+      "status": "Pending"
+    },
+    {
+      "id": "32",
+      "title": "Review project budget",
+      "description": "Analyze project expenses and budget allocation",
+      "assigned_id": "5",
+      "assigned_to": "Mia Thompson",
+      "due_date": "2026-01-10",
+      "status": "In Progress"
+    },
+    {
+      "id": "33",
+      "title": "Conduct market research",
+      "description": "Research market trends and user needs",
+      "assigned_id": "6",
+      "assigned_to": "Noah Ramirez",
+      "due_date": "2026-01-15",
+      "status": "Pending"
+    },
+    {
+      "id": "34",
+      "title": "Update project roadmap",
+      "description": "Revise the project roadmap based on current progress",
+      "assigned_id": "7",
+      "assigned_to": "Ava Scott",
+      "due_date": "2026-01-20",
+      "status": "Completed"
+    },
+    {
+      "id": "35",
+      "title": "Conduct user interviews",
+      "description": "Interview users for detailed feedback on the application",
+      "assigned_id": "8",
+      "assigned_to": "James Parker",
+      "due_date": "2026-01-25",
+      "status": "Pending"
+    },
+    {
+      "id": "36",
+      "title": "Implement new features",
+      "description": "Add new functionalities based on user requests",
+      "assigned_id": "9",
+      "assigned_to": "Isabella Moore",
+      "due_date": "2026-01-30",
+      "status": "In Progress"
+    },
+    {
+      "id": "37",
+      "title": "Conduct user training",
+      "description": "Train users on new features and functionalities",
+      "assigned_id": "1",
+      "assigned_to": "Admin User",
+      "due_date": "2026-02-05",
+      "status": "Pending"
+    },
+    {
+      "id": "38",
+      "title": "Plan next sprint",
+      "description": "Define tasks and goals for the next sprint",
+      "assigned_id": "2",
+      "assigned_to": "Ethan Johnson",
+      "due_date": "2026-02-10",
+      "status": "Completed"
+    },
+    {
+      "id": "39",
+      "title": "Review code quality",
+      "description": "Ensure code adheres to quality standards",
+      "assigned_id": "3",
+      "assigned_to": "Olivia Martinez",
+      "due_date": "2026-02-15",
+      "status": "Pending"
+    },
+    {
+      "id": "40",
+      "title": "Implement search functionality",
+      "description": "Add search feature to the dashboard",
+      "assigned_id": "4",
+      "assigned_to": "Liam Carter",
+      "due_date": "2026-02-20",
+      "status": "In Progress"
+    },
+    {
+      "id": "41",
+      "title": "Optimize performance",
+      "description": "Improve loading times and responsiveness",
+      "assigned_id": "5",
+      "assigned_to": "Mia Thompson",
+      "due_date": "2026-02-25",
+      "status": "Pending"
+    },
+    {
+      "id": "42",
+      "title": "Add user notifications",
+      "description": "Implement notification system for user actions",
+      "assigned_id": "6",
+      "assigned_to": "Noah Ramirez",
+      "due_date": "2026-03-01",
+      "status": "Completed"
+    },
+    {
+      "id": "43",
+      "title": "Conduct security audit",
+      "description": "Review application for security vulnerabilities",
+      "assigned_id": "7",
+      "assigned_to": "Ava Scott",
+      "due_date": "2026-03-05",
+      "status": "Pending"
+    },
+    {
+      "id": "44",
+      "title": "Prepare release notes",
+      "description": "Document changes for the next release",
+      "assigned_id": "8",
+      "assigned_to": "James Parker",
+      "due_date": "2026-03-10",
+      "status": "In Progress"
+    },
+    {
+      "id": "45",
+      "title": "Conduct user acceptance testing",
+      "description": "Test the application with real users for feedback",
+      "assigned_id": "9",
+      "assigned_to": "Isabella Moore",
+      "due_date": "2026-03-15",
+      "status": "Pending"
+    },
+    {
+      "id": "46",
+      "title": "Update UI components",
+      "description": "Revise UI components for better user experience",
+      "assigned_id": "1",
+      "assigned_to": "Admin User",
+      "due_date": "2026-03-20",
+      "status": "Completed"
+    },
+    {
+      "id": "47",
+      "title": "Implement data analytics",
+      "description": "Add analytics features to track user behavior",
+      "assigned_id": "2",
+      "assigned_to": "Ethan Johnson",
+      "due_date": "2026-03-25",
+      "status": "Pending"
+    },
+    {
+      "id": "48",
+      "title": "Conduct performance testing",
+      "description": "Test the application under load conditions",
+      "assigned_id": "3",
+      "assigned_to": "Olivia Martinez",
+      "due_date": "2026-03-30",
+      "status": "In Progress"
+    }
+  ]
+}

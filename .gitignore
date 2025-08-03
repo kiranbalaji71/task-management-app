@@ -1,0 +1,83 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Editor & system files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# Optional: Mac-specific files
+.AppleDouble
+.LSOverride
+
+# Optional: VSCode settings (if you don't want to share them)
+.vscode/
+
+# Prettier cache
+.prettiercache
+
+# Package lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+.env.*.local
+
+# Editor & system files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# Optional: Mac-specific files
+.AppleDouble
+.LSOverride
+
+# Optional: VSCode settings (if you don't want to share them)
+.vscode/
+
+# Prettier cache
+.prettiercache

@@ -1,0 +1,40 @@
+{
+  "name": "task-management",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "server": "json-server --watch src/server/db.json --port 5000",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^6.0.0",
+    "@reduxjs/toolkit": "^2.8.2",
+    "antd": "^5.26.7",
+    "axios": "^1.11.0",
+    "dayjs": "^1.11.13",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-error-boundary": "^6.0.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.7.1",
+    "redux-persist": "^6.0.0",
+    "sass": "^1.89.2"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.27.1",
+    "@eslint/js": "^9.30.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "eslint": "^9.30.1",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "json-server": "^1.0.0-beta.3",
+    "vite": "^7.0.4"
+  }
+}

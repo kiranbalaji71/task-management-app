@@ -1,0 +1,75 @@
+.layout-container {
+  min-height: 100vh;
+
+  .layout-header {
+    background: #105fcf;
+    color: #ffffff;
+    padding: 0 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .layout-title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .layout-user-details {
+    line-height: 1.5;
+  }
+  .layout-user-name {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .layout-user-role {
+    font-size: 12px;
+    color: #cfcfcf;
+  }
+  .layout-avatar {
+    background-color: #e29f0e;
+    vertical-align: middle;
+  }
+
+  .layout-sider {
+    background: #fff;
+    border-right: 1px solid #f0f0f0;
+    position: sticky;
+    top: 64px;
+    height: calc(100vh - 64px);
+    overflow: auto;
+  }
+
+  .layout-content {
+    background: #f0f2f5;
+    min-height: calc(100vh - 64px);
+    overflow: auto;
+  }
+
+  .layout-footer {
+    padding: 0;
+    z-index: 2;
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    .footer-menu-icons {
+      display: flex;
+      justify-content: center;
+      border: none;
+      svg {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+}
