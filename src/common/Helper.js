@@ -4,7 +4,7 @@ import {
   EditFilled,
   QuestionCircleFilled,
 } from '@ant-design/icons';
-import { Button, Popconfirm, Dropdown, Tooltip, Popover } from 'antd';
+import { Button, Popconfirm, Dropdown, Tooltip, Popover, Space } from 'antd';
 import dayjs from 'dayjs';
 
 export const getTaskColumns = (
@@ -149,7 +149,7 @@ export const getUserColumns = (
       key: 'role',
       render: (text) => {
         const role = text ? text.charAt(0).toUpperCase() + text.slice(1) : null;
-        return <div>{role || '—'}</div>;
+        return <span>{role || '—'}</span>;
       },
     },
     {
@@ -162,7 +162,7 @@ export const getUserColumns = (
       title: 'Action',
       key: 'action',
       render: (_, record) => (
-        <>
+        <Space align="right">
           <Button type="text" size="small" onClick={() => handleUpdate(record)}>
             <EditFilled />
           </Button>
@@ -182,7 +182,7 @@ export const getUserColumns = (
               <DeleteOutlined />
             </Button>
           </Popconfirm>
-        </>
+        </Space>
       ),
     },
   ];

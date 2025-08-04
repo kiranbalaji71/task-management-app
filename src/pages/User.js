@@ -1,6 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Drawer, Form, Input, Select, Table, Typography } from 'antd';
+import {
+  Button,
+  Drawer,
+  Form,
+  Input,
+  Select,
+  Table,
+  Typography,
+  Grid,
+  Card,
+} from 'antd';
 import PageSpin from '../components/PageSpin';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { useMessageApi } from '../context/MessageContext';
@@ -16,6 +26,7 @@ import { getUserColumns } from '../common/Helper';
 
 const { Option } = Select;
 const { Title, Text } = Typography;
+const { useBreakpoint } = Grid;
 
 const User = ({ userdetails = {} }) => {
   const dispatch = useDispatch();
@@ -25,6 +36,7 @@ const User = ({ userdetails = {} }) => {
   const [form] = Form.useForm();
   const { users, loading, error } = useSelector((state) => state.usersReducer);
   const messageApi = useMessageApi();
+  const screens = useBreakpoint();
 
   // Create user
   const handleCreateUser = (values) => {
@@ -115,6 +127,14 @@ const User = ({ userdetails = {} }) => {
     );
   }
 
+  const columns = getUserColumns(
+    userdetails,
+    dispatch,
+    deleteUser,
+    handleEdit,
+    messageApi
+  );
+
   return (
     <div className="user-container">
       <div className="user-header">
@@ -136,22 +156,64 @@ const User = ({ userdetails = {} }) => {
           Add User
         </Button>
       </div>
+      {!screens.xs && (
+        <Table
+          className="user-table"
+          columns={columns}
+          dataSource={users}
+          rowKey="id"
+          pagination={false}
+          size="small"
+          scroll={{ x: true }}
+        />
+      )}
+      {screens.xs && (
+        <div className="task-card-list">
+          {users.map((user, index) => {
+            const actionCol = columns.find((col) => col.key === 'action');
 
-      <Table
-        className="user-table"
-        columns={getUserColumns(
-          userdetails,
-          dispatch,
-          deleteUser,
-          handleEdit,
-          messageApi
-        )}
-        dataSource={users}
-        rowKey="id"
-        pagination={false}
-        size="small"
-        scroll={{ x: true }}
-      />
+            return (
+              <Card
+                key={user.id}
+                size="small"
+                style={{ marginBottom: 12 }}
+                title={`#${index + 1}`}
+                extra={
+                  actionCol.render
+                    ? actionCol.render(user[actionCol.dataIndex], user)
+                    : null
+                }
+              >
+                {columns.map((col) => {
+                  if (col.key === 'action') return null;
+
+                  let content;
+                  if (col.render) {
+                    content = col.render(user[col.dataIndex], user);
+                  } else {
+                    content = user[col.dataIndex];
+                  }
+
+                  return (
+                    <p
+                      key={col.key || col.dataIndex}
+                      style={{ marginBottom: 6 }}
+                    >
+                      <strong>
+                        {typeof col.title === 'string'
+                          ? col.title
+                          : col.title?.props?.children?.[0] || ''}
+                        :
+                      </strong>{' '}
+                      {content}
+                    </p>
+                  );
+                })}
+              </Card>
+            );
+          })}
+        </div>
+      )}
 
       <Drawer
         title={isEditMode ? '✏️ Edit User' : '🆕 Create User'}
@@ -164,7 +226,6 @@ const User = ({ userdetails = {} }) => {
           onFinish={isEditMode ? handleUpdateUser : handleCreateUser}
           layout="vertical"
         >
-          {/* Hidden id for edit mode */}
           <Form.Item name="id" hidden>
             <Input type="hidden" />
           </Form.Item>

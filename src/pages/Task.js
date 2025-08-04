@@ -15,6 +15,8 @@ import {
   Select,
   Table,
   Typography,
+  Grid,
+  Card,
 } from 'antd';
 import PageSpin from '../components/PageSpin';
 import { PlusCircleOutlined } from '@ant-design/icons';
@@ -26,6 +28,7 @@ import { getTaskColumns } from '../common/Helper';
 
 const { Option } = Select;
 const { Title, Text } = Typography;
+const { useBreakpoint } = Grid;
 
 const Task = ({ userdetails = {} }) => {
   const dispatch = useDispatch();
@@ -34,6 +37,7 @@ const Task = ({ userdetails = {} }) => {
   const [form] = Form.useForm();
   const { tasks, loading, error } = useSelector((state) => state.tasksReducer);
   const messageApi = useMessageApi();
+  const screens = useBreakpoint();
 
   const handleCreateTask = async (values) => {
     const selectedUser = users.find((u) => u.id === values.assigned_id);
@@ -84,6 +88,14 @@ const Task = ({ userdetails = {} }) => {
     );
   }
 
+  const columns = getTaskColumns(
+    userdetails,
+    dispatch,
+    deleteTask,
+    updateTask,
+    messageApi
+  );
+
   return (
     <div className="task-container">
       <div className="task-header">
@@ -107,21 +119,65 @@ const Task = ({ userdetails = {} }) => {
         )}
       </div>
 
-      <Table
-        className="task-table"
-        columns={getTaskColumns(
-          userdetails,
-          dispatch,
-          deleteTask,
-          updateTask,
-          messageApi
-        )}
-        dataSource={tasks}
-        rowKey="id"
-        pagination={false}
-        size="small"
-        scroll={{ x: true }}
-      />
+      {!screens.xs && (
+        <Table
+          className="task-table"
+          columns={columns}
+          dataSource={tasks}
+          rowKey="id"
+          pagination={false}
+          size="small"
+          scroll={{ x: true }}
+        />
+      )}
+
+      {screens.xs && (
+        <div className="task-card-list">
+          {tasks.map((task, index) => {
+            const actionCol = columns.find((col) => col.key === 'action');
+
+            return (
+              <Card
+                key={task.id}
+                size="small"
+                title={`#${index + 1}`}
+                style={{ marginBottom: 12 }}
+                extra={
+                  actionCol.render
+                    ? actionCol.render(task[actionCol.dataIndex], task)
+                    : null
+                }
+              >
+                {columns.map((col) => {
+                  if (col.key === 'action') return null;
+
+                  let content;
+                  if (col.render) {
+                    content = col.render(task[col.dataIndex], task);
+                  } else {
+                    content = task[col.dataIndex];
+                  }
+
+                  return (
+                    <p
+                      key={col.key || col.dataIndex}
+                      style={{ marginBottom: 6 }}
+                    >
+                      <strong>
+                        {typeof col.title === 'string'
+                          ? col.title
+                          : col.title?.props?.children?.[0] || ''}
+                        :
+                      </strong>{' '}
+                      {content}
+                    </p>
+                  );
+                })}
+              </Card>
+            );
+          })}
+        </div>
+      )}
 
       <Drawer
         title="🆕 Create Task"
