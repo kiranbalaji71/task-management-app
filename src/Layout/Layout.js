@@ -33,7 +33,7 @@ const Layout = () => {
   const screens = useBreakpoint();
   const dispatch = useDispatch();
 
-  const isApiOnline = useApiStatus('http://localhost:5000/users');
+  const isApiOnline = useApiStatus('http://localhost:5000/wakeupcalls', 15000);
   const userMenu = [
     {
       key: 'logout',
