@@ -77,6 +77,9 @@ npm run server
 npm run dev
 ```
 
+> [!NOTE]  
+> Run both commands in separate command prompts so they execute at the same time.
+
 ---
 
 ## 🔑 Roles & Permissions

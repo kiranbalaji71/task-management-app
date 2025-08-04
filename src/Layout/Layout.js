@@ -15,8 +15,10 @@ import {
   Space,
 } from 'antd';
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
-import './Layout.scss';
 import { MessageProvider } from '../context/MessageContext';
+import useApiStatus from '../hooks/useApiStatus';
+import './Layout.scss';
+import ApiStatusBar from './ApiStatusBar';
 
 const { Header, Sider, Content, Footer } = AntLayout;
 const { useBreakpoint } = Grid;
@@ -30,6 +32,8 @@ const Layout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const screens = useBreakpoint();
   const dispatch = useDispatch();
+
+  const isApiOnline = useApiStatus('http://localhost:5000/users');
   const userMenu = [
     {
       key: 'logout',
@@ -96,11 +100,12 @@ const Layout = () => {
 
   return (
     <AntLayout className="layout-container">
+      <ApiStatusBar isApiOnline={isApiOnline} />
       <MessageProvider>
         {!fullContent ? (
           <>
             <Header className="layout-header">
-              <div className="layout-title">Task Management</div>
+              <div className="layout-title">Task Management </div>
 
               <Dropdown menu={{ items: userMenu }} placement="bottomRight">
                 <Space
