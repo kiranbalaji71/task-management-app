@@ -102,6 +102,8 @@ npm run dev
 
 ---
 
+![Project Banner](docs/dashboard.jpeg)
+
 ## 🖼️ Screenshots
 
 ### Login Page
