@@ -1,4 +1,4 @@
-import React, { Suspense, use, useMemo, useState } from 'react';
+import React, { Suspense, useMemo, useState, useEffect } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { adminRoutes, appRoutes, loginRoutes } from '../routes/Routes';
 import { baseUrlRoute } from '../common/Constants';
@@ -13,12 +13,13 @@ import {
   Avatar,
   Dropdown,
   Space,
+  ConfigProvider,
+  Switch,
+  theme,
 } from 'antd';
-import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
+import { LogoutOutlined, UserOutlined, BulbOutlined } from '@ant-design/icons';
 import { MessageProvider } from '../context/MessageContext';
-import useApiStatus from '../hooks/useApiStatus';
 import './Layout.scss';
-import ApiStatusBar from './ApiStatusBar';
 
 const { Header, Sider, Content, Footer } = AntLayout;
 const { useBreakpoint } = Grid;
@@ -30,11 +31,44 @@ const Layout = () => {
     (state) => state.loginReducer
   );
   const [collapsed, setCollapsed] = useState(false);
+  const [themeMode, setThemeMode] = useState(
+    localStorage.getItem('themeMode') ||
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light'
+  );
   const screens = useBreakpoint();
   const dispatch = useDispatch();
 
-  const isApiOnline = useApiStatus('http://localhost:5000/wakeupcalls', 15000);
+  const handleThemeChange = (checked) => {
+    const mode = checked ? 'dark' : 'light';
+    setThemeMode(mode);
+    localStorage.setItem('themeMode', mode);
+  };
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', themeMode);
+  }, [themeMode]);
+
   const userMenu = [
+    {
+      key: 'theme',
+      label: (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <BulbOutlined />
+          Theme
+          <Switch
+            checked={themeMode === 'dark'}
+            onChange={handleThemeChange}
+            checkedChildren="Dark"
+            unCheckedChildren="Light"
+          />
+        </div>
+      ),
+    },
+    {
+      type: 'divider',
+    },
     {
       key: 'logout',
       icon: <LogoutOutlined />,
@@ -76,13 +110,18 @@ const Layout = () => {
 
   const renderRoutes = (routesArray) => {
     const redirectPath = isLoggedIn ? '/dashboard' : '/login';
-
     return [
       ...routesArray.map((route, index) => (
         <Route
           key={route.path || index}
           path={route.path}
-          element={<route.component userdetails={userdetails?.data} />}
+          element={
+            <route.component
+              userdetails={userdetails?.data}
+              themeMode={themeMode}
+              handleThemeChange={handleThemeChange}
+            />
+          }
         />
       )),
       <Route
@@ -99,87 +138,95 @@ const Layout = () => {
   };
 
   return (
-    <AntLayout className="layout-container">
-      <ApiStatusBar isApiOnline={isApiOnline} />
-      <MessageProvider>
-        {!fullContent ? (
-          <>
-            <Header className="layout-header">
-              <div className="layout-title">Task Management </div>
-
-              <Dropdown menu={{ items: userMenu }} placement="bottomRight">
-                <Space
-                  className="layout-user-menu"
-                  style={{ cursor: 'pointer' }}
-                >
-                  {screens.sm && (
-                    <div className="layout-user-details">
-                      <div className="layout-user-name">
-                        {userName || 'User'}
+    <ConfigProvider
+      theme={{
+        algorithm:
+          themeMode === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm,
+      }}
+    >
+      <AntLayout className="layout-container">
+        <MessageProvider>
+          {!fullContent ? (
+            <>
+              <Header theme={themeMode} className="layout-header">
+                <div className="layout-title">Task Management</div>
+                <Dropdown menu={{ items: userMenu }} placement="bottomRight">
+                  <Space
+                    className="layout-user-menu"
+                    style={{ cursor: 'pointer' }}
+                  >
+                    {screens.sm && (
+                      <div className="layout-user-details">
+                        <div className="layout-user-name">
+                          {userName || 'User'}
+                        </div>
+                        <div className="layout-user-role">{role || 'Role'}</div>
                       </div>
-                      <div className="layout-user-role">{role || 'Role'}</div>
-                    </div>
-                  )}
-                  <Avatar className="layout-avatar" size="large">
-                    {userName?.charAt(0)?.toUpperCase() || <UserOutlined />}
-                  </Avatar>
-                </Space>
-              </Dropdown>
-            </Header>
+                    )}
+                    <Avatar className="layout-avatar" size="large">
+                      {userName?.charAt(0)?.toUpperCase() || <UserOutlined />}
+                    </Avatar>
+                  </Space>
+                </Dropdown>
+              </Header>
 
-            <AntLayout>
-              {!screens.xs && (
-                <Sider
-                  className="layout-sider"
-                  collapsed={collapsed}
-                  onCollapse={setCollapsed}
-                  breakpoint="md"
-                  onBreakpoint={(broken) => setCollapsed(broken)}
-                >
+              <AntLayout>
+                {!screens.xs && (
+                  <Sider
+                    className="layout-sider"
+                    collapsed={collapsed}
+                    onCollapse={setCollapsed}
+                    breakpoint="md"
+                    theme={themeMode}
+                    onBreakpoint={(broken) => setCollapsed(broken)}
+                  >
+                    <Menu
+                      className="sider-menu-icons"
+                      mode="inline"
+                      selectedKeys={[pathname]}
+                      items={prepareMenuItems()}
+                    />
+                  </Sider>
+                )}
+
+                <Content className="layout-content">
+                  <Suspense fallback={<Loader />}>
+                    <Routes>{renderRoutes(routing)}</Routes>
+                  </Suspense>
+                </Content>
+              </AntLayout>
+
+              {screens.xs && (
+                <Footer className="layout-footer">
                   <Menu
-                    mode="inline"
+                    className="footer-menu-icons"
+                    mode="horizontal"
                     selectedKeys={[pathname]}
-                    items={prepareMenuItems()}
+                    items={prepareMenuItems().map((item) => ({
+                      key: item?.key,
+                      onClick: item?.onClick,
+                      label: (
+                        <Tooltip title={item.label} placement="top">
+                          {item.icon}
+                        </Tooltip>
+                      ),
+                    }))}
                   />
-                </Sider>
+                </Footer>
               )}
-
+            </>
+          ) : (
+            <AntLayout>
               <Content className="layout-content">
                 <Suspense fallback={<Loader />}>
                   <Routes>{renderRoutes(routing)}</Routes>
                 </Suspense>
               </Content>
             </AntLayout>
-            {screens.xs && (
-              <Footer className="layout-footer">
-                <Menu
-                  className="footer-menu-icons"
-                  mode="horizontal"
-                  selectedKeys={[pathname]}
-                  items={prepareMenuItems().map((item) => ({
-                    key: item?.key,
-                    onClick: item?.onClick,
-                    label: (
-                      <Tooltip title={item.label} placement="top">
-                        {item.icon}
-                      </Tooltip>
-                    ),
-                  }))}
-                />
-              </Footer>
-            )}
-          </>
-        ) : (
-          <AntLayout>
-            <Content className="layout-content">
-              <Suspense fallback={<Loader />}>
-                <Routes>{renderRoutes(routing)}</Routes>
-              </Suspense>
-            </Content>
-          </AntLayout>
-        )}
-      </MessageProvider>
-    </AntLayout>
+          )}
+        </MessageProvider>
+      </AntLayout>
+    </ConfigProvider>
   );
 };
 

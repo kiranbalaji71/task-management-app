@@ -61,7 +61,7 @@ const Task = ({ userdetails = {} }) => {
 
   const fetchUsers = async () => {
     try {
-      const response = await api.getUserOptions();
+      const response = await api.getUserOptions(userdetails);
       if (response.status !== 200) {
         messageApi.error(response.message || 'Failed to fetch users 🙅‍♂️');
         return;
@@ -143,8 +143,8 @@ const Task = ({ userdetails = {} }) => {
                 title={`#${index + 1}`}
                 style={{ marginBottom: 12 }}
                 extra={
-                  actionCol.render
-                    ? actionCol.render(task[actionCol.dataIndex], task)
+                  actionCol?.render
+                    ? actionCol?.render(task[actionCol.dataIndex], task)
                     : null
                 }
               >
@@ -152,8 +152,8 @@ const Task = ({ userdetails = {} }) => {
                   if (col.key === 'action') return null;
 
                   let content;
-                  if (col.render) {
-                    content = col.render(task[col.dataIndex], task);
+                  if (col?.render) {
+                    content = col?.render(task[col.dataIndex], task);
                   } else {
                     content = task[col.dataIndex];
                   }

@@ -2,7 +2,7 @@
   min-height: 100vh;
 
   .layout-header {
-    background: #105fcf;
+    background-color: #141414;
     color: #ffffff;
     padding: 0 16px;
     font-weight: bold;
@@ -12,7 +12,6 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid #f0f0f0;
   }
 
   .layout-title {
@@ -37,16 +36,16 @@
   }
 
   .layout-sider {
-    background: #fff;
-    border-right: 1px solid #f0f0f0;
     position: sticky;
     top: 64px;
     height: calc(100vh - 64px);
     overflow: auto;
+    .sider-menu-icons {
+      height: 100% !important;
+    }
   }
 
   .layout-content {
-    background: #f0f2f5;
     min-height: calc(100vh - 64px);
     overflow: auto;
   }
@@ -54,8 +53,6 @@
   .layout-footer {
     padding: 0;
     z-index: 2;
-    background: #fff;
-    border-top: 1px solid #f0f0f0;
     position: sticky;
     bottom: 0;
     display: flex;
@@ -66,6 +63,7 @@
       display: flex;
       justify-content: center;
       border: none;
+      width: 100% !important;
       svg {
         height: 24px;
         width: 24px;

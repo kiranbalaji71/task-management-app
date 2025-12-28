@@ -61,8 +61,12 @@ const api = {
           employeeIds.includes(normalizeId(task.assigned_id))
         );
       } else if (role === 'employee') {
-        filteredData = data.filter(
-          (task) => normalizeId(task.assigned_id) === currentUserId
+        const managerId = users
+          .filter((u) => normalizeId(u.manager_id) === currentUser.manager_id)
+          .map((u) => normalizeId(u.id));
+
+        filteredData = data.filter((task) =>
+          managerId.includes(normalizeId(task.assigned_id))
         );
       }
 
@@ -114,13 +118,6 @@ const api = {
   },
 
   updateTask: async (currentUser, id, task) => {
-    if (!['admin', 'manager'].includes(currentUser.role)) {
-      return {
-        status: 403,
-        message: 'Access denied: Only admins and managers can update tasks',
-      };
-    }
-
     try {
       // Check if task exists
       const { data: foundTasks } = await apiInstance.get(`/tasks?id=${id}`);
@@ -195,12 +192,25 @@ const api = {
     }
   },
 
-  getUserOptions: async () => {
+  getUserOptions: async (currentUser) => {
     try {
       const { data } = await apiInstance.get('/users');
       if (!Array.isArray(data)) return [];
 
-      const formattedData = data.map(({ id, name }) => ({ id, name }));
+      let filteredData = data;
+
+      if (currentUser?.role === 'manager') {
+        filteredData = data.filter(
+          (user) =>
+            user.id === currentUser.id || user.manager_id === currentUser.id
+        );
+      }
+
+      const formattedData = filteredData.map(({ id, name }) => ({
+        id,
+        name,
+      }));
+
       return {
         status: 200,
         message: 'Users fetched successfully',

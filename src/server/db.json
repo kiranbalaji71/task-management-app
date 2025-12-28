@@ -70,6 +70,14 @@
       "role": "employee",
       "manager_id": "2",
       "manager_name": "Ethan Johnson"
+    },
+    {
+      "id": "e710",
+      "name": "undertaker1",
+      "email": "undertaker@wwe.com",
+      "role": "employee",
+      "manager_id": "2",
+      "manager_name": "Ethan Johnson"
     }
   ],
   "tasks": [
@@ -80,7 +88,7 @@
       "assigned_id": "1",
       "assigned_to": "Admin User",
       "due_date": "2025-08-05",
-      "status": "In Progress"
+      "status": "Completed"
     },
     {
       "id": "2",
@@ -188,7 +196,7 @@
       "assigned_id": "4",
       "assigned_to": "Liam Carter",
       "due_date": "2025-10-05",
-      "status": "Pending"
+      "status": "Completed"
     },
     {
       "id": "14",

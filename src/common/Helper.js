@@ -71,11 +71,15 @@ export const getTaskColumns = (
           },
         }));
 
+        const employeeCurrentId =
+          userdetails.role === 'employee' &&
+          userdetails.id === record.assigned_id;
+
         return (
           <Dropdown
             menu={{ items: menuItems }}
             trigger={['click']}
-            disabled={!['admin', 'manager'].includes(userdetails.role)}
+            disabled={!employeeCurrentId}
           >
             <Button
               size="small"

@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchLoginDetails, setUserRole } from '../store/slice/loginSlice';
 import { useNavigate } from 'react-router-dom';
 import { baseUrlRoute } from '../common/Constants';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { useMessageApi } from '../context/MessageContext';
 import './Style.scss';
 
 const Loader = lazy(() => import('../components/Loader'));
 
-const Login = () => {
+const Login = ({ handleThemeChange }) => {
   const [form] = Form.useForm();
   const { loading } = useSelector((state) => state.loginReducer);
   const dispatch = useDispatch();
@@ -43,6 +43,10 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    const theme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    handleThemeChange(theme);
+  }, []);
   return (
     <>
       {loading && (
